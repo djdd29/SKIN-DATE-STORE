@@ -3,396 +3,745 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DATE RARE SKINS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a10">
+<title>DATE | RARE SKINS</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#080808;color:white;font-family:Arial,sans-serif;min-height:100vh}
-header{text-align:center;padding:35px 15px;background:linear-gradient(#202020,#080808);border-bottom:1px solid #333}
-.logo{font-size:36px;font-weight:900;letter-spacing:8px;text-shadow:0 0 20px white}
-header p{color:#999;margin-top:12px}
-.container{max-width:1100px;margin:auto;padding:25px 15px}
-.section-title{margin:15px 0 22px;font-size:21px}
-.skins{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
-.skin{background:#151515;border:1px solid #333;border-radius:13px;overflow:hidden;transition:.25s}
-.skin:hover{transform:translateY(-5px);border-color:#aaa;box-shadow:0 0 18px #ffffff20}
-.skin img{width:100%;height:210px;object-fit:contain;background:linear-gradient(140deg,#292929,#101010)}
-.skin h3{text-align:center;padding:13px 5px;font-size:15px}
-.skin button{display:block;width:85%;margin:0 auto 13px;background:#eee;color:black;border:0;padding:11px;border-radius:7px;font-weight:bold;cursor:pointer}
-.modal{display:none;position:fixed;inset:0;background:#000e;z-index:10;justify-content:center;align-items:center;padding:15px}
-.modal-box{width:100%;max-width:400px;background:#171717;border:1px solid #555;border-radius:17px;padding:25px;text-align:center}
-.modal-box h2{margin-bottom:12px}
-.modal-box p{color:#999;font-size:13px;margin-bottom:20px}
-.start{width:100%;padding:13px;background:white;color:black;border:0;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer}
-.result{display:none;text-align:right;margin-top:20px}
-.field{background:#090909;padding:13px;border:1px solid #333;border-radius:8px;margin:12px 0}
-.field small{color:#888;display:block;margin-bottom:8px}
-.field strong{font-size:14px;direction:ltr;display:block;text-align:left;overflow-wrap:anywhere}
-.copy{background:#333;color:white;border:0;border-radius:6px;padding:8px 14px;margin-top:9px;cursor:pointer}
-.close{background:none;color:#aaa;border:0;margin-top:20px;cursor:pointer}
-footer{text-align:center;padding:30px;color:#777;border-top:1px solid #222;margin-top:35px}
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
+
+:root {
+  --bg: #080a10;
+  --panel: #111520;
+  --panel2: #171d2a;
+  --line: #293244;
+  --muted: #8993a5;
+  --white: #f5f7fb;
+  --accent: #7c9cff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 50% -15%, #26365d 0%, transparent 48%),
+    var(--bg);
+  color: var(--white);
+  font-family: 'Cairo', Arial, sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  padding: 35px 16px 28px;
+  text-align: center;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.logo {
+  font-size: 13px;
+  letter-spacing: 8px;
+  color: var(--accent);
+  font-weight: 800;
+  direction: ltr;
+}
+
+header h1 {
+  font-size: clamp(25px, 6vw, 43px);
+  font-weight: 900;
+  margin-top: 8px;
+}
+
+header p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.stat {
+  background: #ffffff09;
+  border: 1px solid #ffffff12;
+  border-radius: 10px;
+  padding: 7px 16px;
+  font-size: 12px;
+  color: #c5ccda;
+}
+
+.stat strong {
+  color: white;
+  margin-left: 5px;
+}
+
+.container {
+  width: min(1100px, 100%);
+  margin: auto;
+  padding: 25px 16px 55px;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 17px;
+}
+
+.section-title h2 {
+  font-size: 19px;
+}
+
+.section-title span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.search {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  outline: none;
+  background: var(--panel);
+  color: white;
+  font-family: inherit;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.search:focus {
+  border-color: var(--accent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.card {
+  background: linear-gradient(145deg, #171e2d, #0e121c);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: .25s;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #819dff;
+  box-shadow: 0 12px 35px #0008;
+}
+
+.image-area {
+  height: 230px;
+  background:
+    radial-gradient(circle at center, #34466c55, transparent 70%),
+    #151b28;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 12px;
+  transition: .3s;
+}
+
+.card:hover .image-area img {
+  transform: scale(1.06);
+}
+
+.loading {
+  color: #9ca9c2;
+  font-size: 12px;
+  position: absolute;
+}
+
+.image-area img:not([src=""]) + .loading {
+  display: none;
+}
+
+.card-info {
+  padding: 13px;
+}
+
+.card-info h3 {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.card-info p {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: #7c9cff18;
+  color: #a9bcff;
+  font-size: 10px;
+}
+
+.empty {
+  display: none;
+  text-align: center;
+  color: var(--muted);
+  padding: 35px;
+}
+
+/* نافذة التفاصيل */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #03050bdc;
+  backdrop-filter: blur(9px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  padding: 15px;
+}
+
+.overlay.show {
+  display: flex;
+}
+
+.modal {
+  width: 100%;
+  max-width: 430px;
+  background: #121825;
+  border: 1px solid #35415a;
+  border-radius: 19px;
+  padding: 20px;
+  box-shadow: 0 20px 80px #000b;
+  animation: appear .2s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes appear {
+  from {opacity: 0; transform: translateY(12px) scale(.97)}
+  to {opacity: 1; transform: translateY(0) scale(1)}
+}
+
+.modal-image {
+  height: 240px;
+  background: #1b2435;
+  border-radius: 13px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.modal h2 {
+  text-align: center;
+  margin: 15px 0 4px;
+  font-size: 21px;
+}
+
+.modal-subtitle {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 17px;
+}
+
+.main-btn, .secondary-btn, .copy-btn {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  padding: 13px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 9px;
+  transition: .2s;
+}
+
+.main-btn {
+  background: linear-gradient(110deg, #91aaff, #6686ed);
+  color: #080d1a;
+}
+
+.main-btn:hover {
+  filter: brightness(1.1);
+}
+
+.secondary-btn {
+  background: #252e40;
+  color: white;
+}
+
+.copy-btn {
+  background: #263e35;
+  color: #a9f3c9;
+}
+
+.result {
+  display: none;
+  margin-top: 15px;
+  background: #0a101b;
+  border: 1px solid #29364c;
+  border-radius: 12px;
+  padding: 13px;
+}
+
+.result.show {
+  display: block;
+}
+
+.result-title {
+  font-size: 12px;
+  color: #a8b7d5;
+  margin-bottom: 10px;
+}
+
+.data-row {
+  direction: ltr;
+  text-align: left;
+  padding: 9px;
+  border-radius: 7px;
+  background: #ffffff08;
+  margin-top: 7px;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+
+.data-row span {
+  color: #7e91b5;
+  display: block;
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+
+.disclaimer {
+  color: #8290a7;
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.8;
+  margin-top: 13px;
+}
+
+footer {
+  border-top: 1px solid #ffffff12;
+  text-align: center;
+  padding: 20px;
+  color: #657087;
+  font-size: 11px;
+}
+
+@media(max-width: 700px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .image-area {
+    height: 185px;
+  }
+
+  .card-info {
+    padding: 10px;
+  }
+
+  .card-info h3 {
+    font-size: 13px;
+  }
+}
+
+@media(max-width: 360px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .image-area {
+    height: 230px;
+  }
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="logo">D A T E</div>
-<p>RARE FORTNITE SKINS</p>
+  <div class="logo">D A T E</div>
+  <h1>RARE FORTNITE SKINS</h1>
+  <p>اكتشف مجموعة من أشهر وأندر سكنات فورتنايت</p>
+
+  <div class="stats">
+    <div class="stat"><strong>09</strong> سكنات</div>
+    <div class="stat"><strong>DATE</strong> COLLECTION</div>
+  </div>
 </header>
 
-<div class="container">
-<h2 class="section-title">✦ السكنات النادرة</h2>
-<div class="skins" id="skins"></div>
-</div>
+<main class="container">
 
-<div class="modal" id="modal">
-<div class="modal-box">
-<h2 id="selectedName">SKIN</h2>
-<p>اضغط تشغيل لعرض بيانات تجريبية عشوائية</p>
-<button class="start" onclick="generate()">▶ تشغيل</button>
+  <div class="section-title">
+    <h2>مجموعة السكنات</h2>
+    <span id="count">9 سكنات</span>
+  </div>
 
-<div class="result" id="result">
-<div class="field">
-<small>EMAIL</small>
-<strong id="email"></strong>
-<button class="copy" onclick="copyText('email')">نسخ</button>
-</div>
-<div class="field">
-<small>PASSWORD</small>
-<strong id="password"></strong>
-<button class="copy" onclick="copyText('password')">نسخ</button>
-</div>
-<p style="color:#aaa;margin-top:15px">بيانات وهمية وليست حسابات حقيقية</p>
-</div>
-<button class="close" onclick="closeModal()">إغلاق</button>
-</div>
-</div>
+  <input
+    class="search"
+    id="search"
+    type="search"
+    placeholder="ابحث عن سكن..."
+    autocomplete="off"
+  >
 
-<footer>DATE STORE © 2026</footer>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty">ما لقينا سكن بهذا الاسم</div>
+
+</main>
+
+<footer>
+  DATE COLLECTION © 2026
+</footer>
+
+<!-- نافذة السكن -->
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+
+    <div class="modal-image">
+      <img id="modalImage" alt="Skin">
+    </div>
+
+    <h2 id="modalName"></h2>
+    <p class="modal-subtitle">DATE RARE COLLECTION</p>
+
+    <button class="main-btn" id="generateBtn">
+      تشغيل
+    </button>
+
+    <div class="result" id="result">
+      <div class="result-title">بيانات تجريبية غير حقيقية</div>
+
+      <div class="data-row">
+        <span>EMAIL</span>
+        <b id="email"></b>
+      </div>
+
+      <div class="data-row">
+        <span>PASSWORD</span>
+        <b id="password"></b>
+      </div>
+
+      <button class="copy-btn" id="copyBtn">
+        نسخ البيانات
+      </button>
+    </div>
+
+    <p class="disclaimer">
+      البيانات التي تظهر هنا عشوائية وتجريبية فقط
+      وليست حسابات Epic Games أو Gmail حقيقية
+      ولا يمكن استخدامها لتسجيل الدخول
+    </p>
+
+    <button class="secondary-btn" id="closeBtn">
+      إغلاق
+    </button>
+
+  </div>
+</div>
 
 <script>
-const skins=[
-{
- name:"بنت الزومبي الوردي",
- image:"https://fortnite-api.com/images/cosmetics/br/cid_029_athena_commando_f_halloween/variants/material/mat3.png"
-},
-{
- name:"سكلتون البنفسجي",
- image:"https://fortnite.gg/img/items/897/style-2.jpg?5="
-},
-{
- name:"جوردن الطيار",
- search:"Aerial Assault Trooper"
-},
-{
- name:"
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DATE RARE SKINS</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#080808;color:white;font-family:Arial,sans-serif;min-height:100vh}
-header{text-align:center;padding:35px 15px;background:linear-gradient(#202020,#080808);border-bottom:1px solid #333}
-.logo{font-size:36px;font-weight:900;letter-spacing:8px;text-shadow:0 0 20px white}
-header p{color:#999;margin-top:12px}
-.container{max-width:1100px;margin:auto;padding:25px 15px}
-.section-title{margin:15px 0 22px;font-size:21px}
-.skins{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
-.skin{background:#151515;border:1px solid #333;border-radius:13px;overflow:hidden;transition:.25s}
-.skin:hover{transform:translateY(-5px);border-color:#aaa;box-shadow:0 0 18px #ffffff20}
-.skin img{width:100%;height:210px;object-fit:contain;background:linear-gradient(140deg,#292929,#101010)}
-.skin h3{text-align:center;padding:13px 5px;font-size:15px}
-.skin button{display:block;width:85%;margin:0 auto 13px;background:#eee;color:black;border:0;padding:11px;border-radius:7px;font-weight:bold;cursor:pointer}
-.modal{display:none;position:fixed;inset:0;background:#000e;z-index:10;justify-content:center;align-items:center;padding:15px}
-.modal-box{width:100%;max-width:400px;background:#171717;border:1px solid #555;border-radius:17px;padding:25px;text-align:center}
-.modal-box h2{margin-bottom:12px}
-.modal-box p{color:#999;font-size:13px;margin-bottom:20px}
-.start{width:100%;padding:13px;background:white;color:black;border:0;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer}
-.result{display:none;text-align:right;margin-top:20px}
-.field{background:#090909;padding:13px;border:1px solid #333;border-radius:8px;margin:12px 0}
-.field small{color:#888;display:block;margin-bottom:8px}
-.field strong{font-size:14px;direction:ltr;display:block;text-align:left;overflow-wrap:anywhere}
-.copy{background:#333;color:white;border:0;border-radius:6px;padding:8px 14px;margin-top:9px;cursor:pointer}
-.close{background:none;color:#aaa;border:0;margin-top:20px;cursor:pointer}
-footer{text-align:center;padding:30px;color:#777;border-top:1px solid #222;margin-top:35px}
-</style>
-</head>
-<body>
-
-<header>
-<div class="logo">D A T E</div>
-<p>RARE FORTNITE SKINS</p>
-</header>
-
-<div class="container">
-<h2 class="section-title">✦ السكنات النادرة</h2>
-<div class="skins" id="skins"></div>
-</div>
-
-<div class="modal" id="modal">
-<div class="modal-box">
-<h2 id="selectedName">SKIN</h2>
-<p>اضغط تشغيل لعرض بيانات تجريبية عشوائية</p>
-<button class="start" onclick="generate()">▶ تشغيل</button>
-
-<div class="result" id="result">
-<div class="field">
-<small>EMAIL</small>
-<strong id="email"></strong>
-<button class="copy" onclick="copyText('email')">نسخ</button>
-</div>
-<div class="field">
-<small>PASSWORD</small>
-<strong id="password"></strong>
-<button class="copy" onclick="copyText('password')">نسخ</button>
-</div>
-<p style="color:#aaa;margin-top:15px">بيانات وهمية وليست حسابات حقيقية</p>
-</div>
-<button class="close" onclick="closeModal()">إغلاق</button>
-</div>
-</div>
-
-<footer>DATE STORE © 2026</footer>
-
-<script>
-const skins=[
-{
- name:"بنت الزومبي الوردي",
- image:"https://fortnite-api.com/images/cosmetics/br/cid_029_athena_commando_f_halloween/variants/material/mat3.png"
-},
-{
- name:"سكلتون البنفسجي",
- image:"https://fortnite.gg/img/items/897/style-2.jpg?5="
-},
-{
- name:"بنت الطيارة",
- search:"Aerial Assault Trooper"
-},
-{
- name:"جورد الطيار",
- search:"Renegade Raider"
-},
-{
- name:"شيطون",
- search:"Demon"
-},
-{
- name:"بلاك نايت",
- search:"Black Knight"
-},
-{
- name:"ريد نايت",
- search:"Red Knight"
-},
-{
- name:"ترافيس سكوت",
- search:"Travis Scott"
-},
-{
- name:"غلاكسي",
- search:"Galaxy"
-},
-{
- name:"آيكونك",
- search:"IKONIK"
-}
+const skins = [
+  {
+    name: "بنت الزومبي الوردية",
+    search: "Ghoul Trooper",
+    style: "Pink",
+    image: "https://fortnite.gg/img/items/898-3.jpg"
+  },
+  {
+    name: "سكلتون البنفسجي",
+    search: "Skull Trooper",
+    style: "Purple Glow",
+    image: "https://fortnite.gg/img/items/897-2-2.jpg"
+  },
+  {
+    name: "بنت الطيارة",
+    search: "Aerial Assault Trooper"
+  },
+  {
+    name: "جوردن الطيار",
+    search: "Renegade Raider"
+  },
+  {
+    name: "بلاك نايت",
+    search: "Black Knight"
+  },
+  {
+    name: "ريد نايت",
+    search: "Red Knight"
+  },
+  {
+    name: "ترافيس سكوت",
+    search: "Travis Scott"
+  },
+  {
+    name: "غلاكسي",
+    search: "Galaxy"
+  },
+  {
+    name: "آيكونك",
+    search: "IKONIK"
+  }
 ];
 
-const container=document.getElementById("skins");
+const grid = document.getElementById("grid");
+const overlay = document.getElementById("overlay");
+const searchInput = document.getElementById("search");
 
-skins.forEach((skin,index)=>{
-const card=document.createElement("div");
-card.className="skin";
+let selectedSkin = null;
+let generatedEmail = "";
+let generatedPassword = "";
 
-const img=document.createElement("img");
-img.alt=skin.name;
-img.loading="lazy";
+const imageCache = new Map();
 
-if(skin.image){
-img.src=skin.image;
-}else{
-img.src="https://fortnite-api.com/images/cosmetics/br/cid_029_athena_commando_f_halloween/icon.png";
+function createCard(skin, index) {
+  const card = document.createElement("article");
+  card.className = "card";
+  card.dataset.name = skin.name.toLowerCase();
+
+  const imageArea = document.createElement("div");
+  imageArea.className = "image-area";
+
+  const img = document.createElement("img");
+  img.alt = skin.name;
+  img.loading = "lazy";
+
+  const loading = document.createElement("div");
+  loading.className = "loading";
+  loading.textContent = "جاري تحميل الصورة...";
+
+  img.onerror = () => {
+    img.style.display = "none";
+    loading.textContent = "الصورة غير متاحة";
+  };
+
+  imageArea.appendChild(img);
+  imageArea.appendChild(loading);
+
+  const info = document.createElement("div");
+  info.className = "card-info";
+
+  const title = document.createElement("h3");
+  title.textContent = skin.name;
+
+  const subtitle = document.createElement("p");
+  subtitle.textContent = skin.style
+    ? "Style: " + skin.style
+    : "FORTNITE OUTFIT";
+
+  const tag = document.createElement("span");
+  tag.className = "tag";
+  tag.textContent = "عرض التفاصيل";
+
+  info.append(title, subtitle, tag);
+  card.append(imageArea, info);
+
+  card.addEventListener("click", () => openSkin(index));
+
+  grid.appendChild(card);
+
+  loadSkinImage(skin, img, loading);
 }
 
-card.appendChild(img);
+async function loadSkinImage(skin, img, loading) {
+  try {
+    if (skin.image) {
+      img.src = skin.image;
+      img.onload = () => loading.remove();
+      img.onerror = async () => {
+        img.removeAttribute("src");
+        await loadApiImage(skin, img, loading);
+      };
+      return;
+    }
 
-const title=document.createElement("h3");
-title.textContent=skin.name;
-card.appendChild(title);
-
-const btn=document.createElement("button");
-btn.textContent="عرض البيانات";
-btn.onclick=()=>openModal(skin.name);
-card.appendChild(btn);
-
-container.appendChild(card);
-
-if(skin.search){
-fetch("https://fortnite-api.com/v2/cosmetics/br/search?name="+encodeURIComponent(skin.search))
-.then(r=>r.json())
-.then(data=>{
-if(data.data && data.data.images){
-img.src=data.data.images.icon || data.data.images.featured || img.src;
+    await loadApiImage(skin, img, loading);
+  } catch {
+    loading.textContent = "تعذر تحميل الصورة";
+  }
 }
-})
-.catch(()=>{});
+
+async function loadApiImage(skin, img, loading) {
+  if (imageCache.has(skin.search)) {
+    const cached = imageCache.get(skin.search);
+    if (cached) {
+      img.src = cached;
+      loading.remove();
+    } else {
+      loading.textContent = "الصورة غير متاحة";
+    }
+    return;
+  }
+
+  try {
+    const url =
+      "https://fortnite-api.com/v2/cosmetics/br/search?name=" +
+      encodeURIComponent(skin.search) +
+      "&matchMethod=contains";
+
+    const response = await fetch(url);
+
+    if (!response.ok) throw new Error("API unavailable");
+
+    const json = await response.json();
+    const item = json.data;
+
+    const image = item?.images?.featured ||
+                  item?.images?.icon ||
+                  item?.images?.smallIcon;
+
+    if (!image) throw new Error("No image found");
+
+    imageCache.set(skin.search, image);
+    img.src = image;
+    img.onload = () => loading.remove();
+    img.onerror = () => {
+      loading.textContent = "تعذر عرض الصورة";
+    };
+  } catch {
+    imageCache.set(skin.search, null);
+    loading.textContent = "الصورة غير متاحة";
+  }
 }
+
+function openSkin(index) {
+  selectedSkin = skins[index];
+
+  document.getElementById("modalName").textContent =
+    selectedSkin.name;
+
+  const cardImage = grid.children[index].querySelector("img");
+  const modalImage = document.getElementById("modalImage");
+
+  modalImage.src = cardImage.src || "";
+  modalImage.style.visibility = cardImage.src ? "visible" : "hidden";
+
+  document.getElementById("result").classList.remove("show");
+
+  overlay.classList.add("show");
+}
+
+function closeModal() {
+  overlay.classList.remove("show");
+}
+
+function randomText(length) {
+  const chars = "abcdefghijkmnpqrstuvwxyz23456789";
+  let output = "";
+
+  for (let i = 0; i < length; i++) {
+    output += chars[Math.floor(Math.random() * chars.length)];
+  }
+
+  return output;
+}
+
+function generateAccount() {
+  const code = randomText(9);
+
+  generatedEmail = "demo_" + code + "@example.com";
+  generatedPassword = randomText(14) + "!";
+
+  document.getElementById("email").textContent =
+    generatedEmail;
+
+  document.getElementById("password").textContent =
+    generatedPassword;
+
+  document.getElementById("result").classList.add("show");
+}
+
+async function copyDetails() {
+  const data =
+    "Email: " + generatedEmail +
+    "\nPassword: " + generatedPassword;
+
+  try {
+    await navigator.clipboard.writeText(data);
+    document.getElementById("copyBtn").textContent = "تم النسخ ✓";
+
+    setTimeout(() => {
+      document.getElementById("copyBtn").textContent =
+        "نسخ البيانات";
+    }, 1800);
+  } catch {
+    alert("تعذر النسخ، حاول مرة أخرى");
+  }
+}
+
+function searchSkins() {
+  const value = searchInput.value.trim().toLowerCase();
+  let visible = 0;
+
+  [...grid.children].forEach(card => {
+    const match = card.dataset.name.includes(value);
+    card.style.display = match ? "" : "none";
+    if (match) visible++;
+  });
+
+  document.getElementById("empty").style.display =
+    visible ? "none" : "block";
+
+  document.getElementById("count").textContent =
+    visible + " سكنات";
+}
+
+document.getElementById("generateBtn")
+  .addEventListener("click", generateAccount);
+
+document.getElementById("closeBtn")
+  .addEventListener("click", closeModal);
+
+document.getElementById("copyBtn")
+  .addEventListener("click", copyDetails);
+
+overlay.addEventListener("click", event => {
+  if (event.target === overlay) closeModal();
 });
 
-function openModal(name){
-document.getElementById("selectedName").textContent=name;
-document.getElementById("result").style.display="none";
-document.getElementById("modal").style.display="flex";
-}
-
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
-
-function generate(){
-const chars="abcdefghijklmnopqrstuvwxyz0123456789";
-
-function random(length){
-let value="";
-for(let i=0;i<length;i++){
-value+=chars[Math.floor(Math.random()*chars.length)];
-}
-return value;
-}
-
-document.getElementById("email").textContent=
-random(10)+random(3)+"@gmail.com";
-
-document.getElementById("password").textContent=
-random(12);
-
-document.getElementById("result").style.display="block";
-}
-
-function copyText(id){
-const value=document.getElementById(id).textContent;
-if(navigator.clipboard){
-navigator.clipboard.writeText(value)
-.then(()=>alert("تم النسخ"));
-}else{
-alert("تعذر النسخ");
-}
-}
-</script>
-</body>
-</html>
-",
- search:"Renegade Raider"
-},
-{
- name:"شيطون",
- search:"Demon"
-},
-{
- name:"بلاك نايت",
- search:"Black Knight"
-},
-{
- name:"ريد نايت",
- search:"Red Knight"
-},
-{
- name:"ترافيس سكوت",
- search:"Travis Scott"
-},
-{
- name:"جلاكسي",
- search:"Galaxy"
-},
-{
- name:"آيكونك",
- search:"IKONIK"
-}
-];
-
-const container=document.getElementById("skins");
-
-skins.forEach((skin,index)=>{
-const card=document.createElement("div");
-card.className="skin";
-
-const img=document.createElement("img");
-img.alt=skin.name;
-img.loading="lazy";
-
-if(skin.image){
-img.src=skin.image;
-}else{
-img.src="https://fortnite-api.com/images/cosmetics/br/cid_029_athena_commando_f_halloween/icon.png";
-}
-
-card.appendChild(img);
-
-const title=document.createElement("h3");
-title.textContent=skin.name;
-card.appendChild(title);
-
-const btn=document.createElement("button");
-btn.textContent="عرض البيانات";
-btn.onclick=()=>openModal(skin.name);
-card.appendChild(btn);
-
-container.appendChild(card);
-
-if(skin.search){
-fetch("https://fortnite-api.com/v2/cosmetics/br/search?name="+encodeURIComponent(skin.search))
-.then(r=>r.json())
-.then(data=>{
-if(data.data && data.data.images){
-img.src=data.data.images.icon || data.data.images.featured || img.src;
-}
-})
-.catch(()=>{});
-}
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeModal();
 });
 
-function openModal(name){
-document.getElementById("selectedName").textContent=name;
-document.getElementById("result").style.display="none";
-document.getElementById("modal").style.display="flex";
-}
+searchInput.addEventListener("input", searchSkins);
 
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
-
-function generate(){
-const chars="abcdefghijklmnopqrstuvwxyz0123456789";
-
-function random(length){
-let value="";
-for(let i=0;i<length;i++){
-value+=chars[Math.floor(Math.random()*chars.length)];
-}
-return value;
-}
-
-document.getElementById("email").textContent=
-random(10)+random(3)+"@gmail.com";
-
-document.getElementById("password").textContent=
-random(12);
-
-document.getElementById("result").style.display="block";
-}
-
-function copyText(id){
-const value=document.getElementById(id).textContent;
-if(navigator.clipboard){
-navigator.clipboard.writeText(value)
-.then(()=>alert("تم النسخ"));
-}else{
-alert("تعذر النسخ");
-}
-}
+skins.forEach(createCard);
 </script>
+
 </body>
 </html>
