@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DATE RARE SKINS</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#080808;color:white;font-family:Arial,sans-serif;min-height:100vh}
+header{text-align:center;padding:35px 15px;background:linear-gradient(#202020,#080808);border-bottom:1px solid #333}
+.logo{font-size:36px;font-weight:900;letter-spacing:8px;text-shadow:0 0 20px white}
+header p{color:#999;margin-top:12px}
+.container{max-width:1100px;margin:auto;padding:25px 15px}
+.section-title{margin:15px 0 22px;font-size:21px}
+.skins{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+.skin{background:#151515;border:1px solid #333;border-radius:13px;overflow:hidden;transition:.25s}
+.skin:hover{transform:translateY(-5px);border-color:#aaa;box-shadow:0 0 18px #ffffff20}
+.skin img{width:100%;height:210px;object-fit:contain;background:linear-gradient(140deg,#292929,#101010)}
+.skin h3{text-align:center;padding:13px 5px;font-size:15px}
+.skin button{display:block;width:85%;margin:0 auto 13px;background:#eee;color:black;border:0;padding:11px;border-radius:7px;font-weight:bold;cursor:pointer}
+.modal{display:none;position:fixed;inset:0;background:#000e;z-index:10;justify-content:center;align-items:center;padding:15px}
+.modal-box{width:100%;max-width:400px;background:#171717;border:1px solid #555;border-radius:17px;padding:25px;text-align:center}
+.modal-box h2{margin-bottom:12px}
+.modal-box p{color:#999;font-size:13px;margin-bottom:20px}
+.start{width:100%;padding:13px;background:white;color:black;border:0;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer}
+.result{display:none;text-align:right;margin-top:20px}
+.field{background:#090909;padding:13px;border:1px solid #333;border-radius:8px;margin:12px 0}
+.field small{color:#888;display:block;margin-bottom:8px}
+.field strong{font-size:14px;direction:ltr;display:block;text-align:left;overflow-wrap:anywhere}
+.copy{background:#333;color:white;border:0;border-radius:6px;padding:8px 14px;margin-top:9px;cursor:pointer}
+.close{background:none;color:#aaa;border:0;margin-top:20px;cursor:pointer}
+footer{text-align:center;padding:30px;color:#777;border-top:1px solid #222;margin-top:35px}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">D A T E</div>
+<p>RARE FORTNITE SKINS</p>
+</header>
+
+<div class="container">
+<h2 class="section-title">✦ السكنات النادرة</h2>
+<div class="skins" id="skins"></div>
+</div>
+
+<div class="modal" id="modal">
+<div class="modal-box">
+<h2 id="selectedName">SKIN</h2>
+<p>اضغط تشغيل لعرض بيانات تجريبية عشوائية</p>
+<button class="start" onclick="generate()">▶ تشغيل</button>
+
+<div class="result" id="result">
+<div class="field">
+<small>EMAIL</small>
+<strong id="email"></strong>
+<button class="copy" onclick="copyText('email')">نسخ</button>
+</div>
+<div class="field">
+<small>PASSWORD</small>
+<strong id="password"></strong>
+<button class="copy" onclick="copyText('password')">نسخ</button>
+</div>
+<p style="color:#aaa;margin-top:15px">بيانات وهمية وليست حسابات حقيقية</p>
+</div>
+<button class="close" onclick="closeModal()">إغلاق</button>
+</div>
+</div>
+
+<footer>DATE STORE © 2026</footer>
+
+<script>
+const skins=[
+{
+ name:"بنت الزومبي الوردي",
+ image:"https://fortnite-api.com/images/cosmetics/br/cid_029_athena_commando_f_halloween/variants/material/mat3.png"
+},
+{
+ name:"سكلتون البنفسجي",
+ image:"https://fortnite.gg/img/items/897/style-2.jpg?5="
+},
+{
+ name:"بنت الطيارة",
+ search:"Aerial Assault Trooper"
+},
+{
+ name:"جورد الطيار",
+ search:"Renegade Raider"
+},
+{
+ name:"شيطون",
+ search:"Demon"
+},
+{
+ name:"بلاك نايت",
+ search:"Black Knight"
+},
+{
+ name:"ريد نايت",
+ search:"Red Knight"
+},
+{
+ name:"ترافيس سكوت",
+ search:"Travis Scott"
+},
+{
+ name:"غلاكسي",
+ search:"Galaxy"
+},
+{
+ name:"آيكونك",
+ search:"IKONIK"
+}
+];
+
+const container=document.getElementById("skins");
+
+skins.forEach((skin,index)=>{
+const card=document.createElement("div");
+card.className="skin";
+
+const img=document.createElement("img");
+img.alt=skin.name;
+img.loading="lazy";
+
+if(skin.image){
+img.src=skin.image;
+}else{
+img.src="https://fortnite-api.com/images/cosmetics/br/cid_029_athena_commando_f_halloween/icon.png";
+}
+
+card.appendChild(img);
+
+const title=document.createElement("h3");
+title.textContent=skin.name;
+card.appendChild(title);
+
+const btn=document.createElement("button");
+btn.textContent="عرض البيانات";
+btn.onclick=()=>openModal(skin.name);
+card.appendChild(btn);
+
+container.appendChild(card);
+
+if(skin.search){
+fetch("https://fortnite-api.com/v2/cosmetics/br/search?name="+encodeURIComponent(skin.search))
+.then(r=>r.json())
+.then(data=>{
+if(data.data && data.data.images){
+img.src=data.data.images.icon || data.data.images.featured || img.src;
+}
+})
+.catch(()=>{});
+}
+});
+
+function openModal(name){
+document.getElementById("selectedName").textContent=name;
+document.getElementById("result").style.display="none";
+document.getElementById("modal").style.display="flex";
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+
+function generate(){
+const chars="abcdefghijklmnopqrstuvwxyz0123456789";
+
+function random(length){
+let value="";
+for(let i=0;i<length;i++){
+value+=chars[Math.floor(Math.random()*chars.length)];
+}
+return value;
+}
+
+document.getElementById("email").textContent=
+random(10)+random(3)+"@gmail.com";
+
+document.getElementById("password").textContent=
+random(12);
+
+document.getElementById("result").style.display="block";
+}
+
+function copyText(id){
+const value=document.getElementById(id).textContent;
+if(navigator.clipboard){
+navigator.clipboard.writeText(value)
+.then(()=>alert("تم النسخ"));
+}else{
+alert("تعذر النسخ");
+}
+}
+</script>
+</body>
+</html>
